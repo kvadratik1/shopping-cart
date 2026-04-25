@@ -6,6 +6,16 @@ export default function ShopPage() {
   const [page, setPage] = useState(1);
   const { games, loading, error, pagination } = useGames(page);
 
+  const [localGames, setLocalGames] = useState(
+    () => JSON.parse(localStorage.getItem("cart")) || []
+  );
+
+  const addToCart = (game) => {
+    const newCart = [...localGames, game];
+    setLocalGames(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
+
   if (loading) return <>Loading...</>;
   if (error) return <>Error: {error}</>;
 
@@ -28,7 +38,12 @@ export default function ShopPage() {
     <div>
       <div>
         {games.map((game) => (
-          <ProductCard key={game.id} game={game} />
+          <ProductCard
+            key={game.id}
+            game={game}
+            btnToShow={"add"}
+            onAdd={addToCart}
+          />
         ))}
       </div>
 

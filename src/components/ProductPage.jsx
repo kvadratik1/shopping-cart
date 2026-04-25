@@ -8,10 +8,10 @@ export default function ProductPage() {
   if (!game) return <div>Game not found</div>;
 
   return (
-    <>
+    <div>
       <img src={`${game.background_image}`} alt={game.name} />
       <h1>{game.name}</h1>
       <p>{game.rating}</p>
-    </>
+    </div>
   );
 }
