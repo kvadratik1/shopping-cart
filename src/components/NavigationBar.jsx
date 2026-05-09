@@ -2,8 +2,16 @@ import { Link } from "react-router";
 
 export default function NavigationBar() {
   return (
-    <div>
-      <Link to="/cart">cart</Link> | <Link to="/shop">shop</Link>
-    </div>
+    <header className="navbar">
+      <div className="logo">GameStore</div>
+
+      <nav className="nav-center">
+        <Link to="/shop">Shop</Link>
+      </nav>
+
+      <nav className="nav-right">
+        <Link to="/cart">Cart</Link>
+      </nav>
+    </header>
   );
 }

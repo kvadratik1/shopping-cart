@@ -17,7 +17,7 @@ export default function ShopPage() {
   };
 
   if (loading) return <>Loading...</>;
-  if (error) return <>Error: {error}</>;
+  if (error) throw error;
 
   const { currentPage, lastPage } = pagination;
 
@@ -36,18 +36,18 @@ export default function ShopPage() {
 
   return (
     <div>
-      <div>
+      <div className="shop-grid">
         {games.map((game) => (
           <ProductCard
             key={game.id}
             game={game}
-            btnToShow={"add"}
+            btnToShow="add"
             onAdd={addToCart}
           />
         ))}
       </div>
 
-      <div>
+      <div className="pagination">
         <button
           onClick={() => setPage((p) => p - 1)}
           disabled={currentPage === 1}
@@ -59,7 +59,7 @@ export default function ShopPage() {
           <button
             key={num}
             onClick={() => setPage(num)}
-            style={{ fontWeight: num === currentPage ? "bold" : "normal" }}
+            className={num === currentPage ? "active" : ""}
           >
             {num}
           </button>

@@ -2,20 +2,28 @@ import { Link } from "react-router";
 
 export default function ProductCard({ game, btnToShow, onDelete, onAdd }) {
   return (
-    <div>
+    <div className="card">
       <Link to={`/product/${game.id}`} state={{ game }}>
-        game name {game.name}
+        <img src={game.background_image} alt={game.name} />
+
+        <div className="card-content">
+          <h3>{game.name}</h3>
+
+          <p>⭐ Rating: {game.rating}</p>
+
+          <div className="price">Free</div>
+        </div>
       </Link>
 
-      <p>game rating {game.rating}</p>
+      <div className="card-content">
+        {btnToShow === "delete" && (
+          <button onClick={() => onDelete(game.id)}>Delete</button>
+        )}
 
-      {btnToShow === "delete" && (
-        <button onClick={() => onDelete(game.id)}>delete</button>
-      )}
-
-      {btnToShow === "add" && (
-        <button onClick={() => onAdd(game)}>add to cart</button>
-      )}
+        {btnToShow === "add" && (
+          <button onClick={() => onAdd(game)}>Add to cart</button>
+        )}
+      </div>
     </div>
   );
 }
